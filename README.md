@@ -2,17 +2,23 @@
 
 ## Introduction
 
-Basic configuration including a router and multiple pages.
+Svelte production-ready application:
+- Material UI
+- SPA hash-based routing
 
+## Development
 
-## Dev
+### Non-docker
 
+```bash
+npm install
+npm run-script build
+npm run-script serve
 ```
-yarn dev
-```
 
-## Serving
+### Docker
 
-```
-yarn serve
+```bash
+docker build . -t image:tag
+docker run -p 5000:5000 $PWD:/app image:tag
 ```
