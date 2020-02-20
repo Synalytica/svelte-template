@@ -23,6 +23,7 @@
     "svelte": "^3.18.1"
   },
   "dependencies": {
-    "node-sass": "^4.13.1"
+    "node-sass": "^4.13.1",
+    "svelte-spa-router": "^2.0.0"
   }
 }
