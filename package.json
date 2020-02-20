@@ -2,7 +2,7 @@
   "name": "smui-example-rollup",
   "version": "1.0.0",
   "description": "An example project implementing Svelte Material UI with Rollup.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "serve": "serve .",
@@ -21,5 +21,8 @@
     "rollup-plugin-svelte": "^5.1.1",
     "serve": "^11.3.0",
     "svelte": "^3.18.1"
+  },
+  "dependencies": {
+    "node-sass": "^4.13.1"
   }
 }
