@@ -1,12 +1,15 @@
 FROM node:8-alpine
-LABEL author=pk13055 version=0.5
+LABEL author=pk13055 version=1.0
 
-WORKDIR /app
-RUN npm i node-sass@latest
-COPY package*.json .
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+WORKDIR /home/node/app
+COPY package*.json ./
+
+USER node
 RUN npm install
 
-COPY . .
-EXPOSE 5000
+COPY --chown=node:node . .
 RUN npm run-script build
+
+EXPOSE 5000
 ENTRYPOINT ["npm", "run-script", "serve"]
