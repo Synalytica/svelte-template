@@ -9,6 +9,7 @@ import Regex from './routes/Regex.svelte'
 import Lucky from './routes/Lucky.svelte'
 import Nested from './routes/Nested.svelte'
 import NotFound from './routes/NotFound.svelte'
+import Users from './routes/Users.svelte'
 
 // This demonstrates how to pass routes as a POJO (Plain Old JavaScript Object) or a JS Map
 let routes = new Map()
@@ -21,6 +22,8 @@ routes.set('/brand', Home)
 
 // Using named parameters, with last being optional
 routes.set('/hello/:first/:last?', Name)
+
+routes.set('/users/:id?', Users)
 
 // Wildcard parameter
 routes.set('/wild', Wild)

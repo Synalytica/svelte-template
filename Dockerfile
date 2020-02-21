@@ -9,7 +9,6 @@ USER node
 RUN npm install
 
 COPY --chown=node:node . .
-RUN npm run-script build
 
 EXPOSE 5000
-ENTRYPOINT ["npm", "run-script", "serve"]
+ENTRYPOINT ["./entrypoint.sh"]

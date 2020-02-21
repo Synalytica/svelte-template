@@ -1,5 +1,5 @@
 {
-  "name": "smui-example-rollup",
+  "name": "svelte-template",
   "version": "1.0.0",
   "description": "An example project implementing Svelte Material UI with Rollup.",
   "main": "src/index.js",
@@ -23,6 +23,7 @@
     "svelte": "^3.18.1"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "node-sass": "^4.13.1",
     "svelte-spa-router": "^2.0.0"
   }
