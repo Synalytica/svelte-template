@@ -4,16 +4,17 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import favicon from '$lib/assets/favicon.svg';
-	import Button, { Label, Icon } from '@smui/button';
+	import { Button } from '$lib/components/ui/button';
+	import { ThumbsUp } from 'lucide-svelte';
 
 	let { children } = $props();
 
-	let clicked = 0;
+	let clicked = $state(0);
 	// Contains logging information used by tests
-	let logbox = '';
+	let logbox = $state('');
 
 	// Dynamic links
-	let dynamicLinks = [
+	let dynamicLinks = $state([
 		{
 			id: 1,
 			link: '/hello/dynamic-link-1'
@@ -26,7 +27,7 @@
 			id: 3,
 			link: '/hello/dynamic-link-3'
 		}
-	];
+	]);
 
 	// Navigation functions
 	function goToWild() {
@@ -49,18 +50,20 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" />
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+		rel="stylesheet" />
 </svelte:head>
 
 <h1>SvelteKit example</h1>
 <div class="container">
-	<Button on:click={() => clicked++}>
-		<Icon class="material-icons">thumb_up</Icon>
-		<Label>Click Me</Label>
+	<Button onclick={() => clicked++}>
+		<ThumbsUp class="size-4" />
+		Click Me
 	</Button>
-	<p class="mdc-typography--body1">
+	<p>
 		{#if clicked}
 			You've clicked the button {clicked} time{clicked === 1 ? '' : 's'}.
 		{:else}
@@ -91,9 +94,9 @@
 
 <!-- Navigate with buttons -->
 <p class="navigation-buttons">
-	<button on:click={goToWild}>Visit /wild/something</button>
-	<button on:click={goBack}>Go back</button>
-	<button on:click={replaceRoute}>Replace current page</button>
+	<button onclick={goToWild}>Visit /wild/something</button>
+	<button onclick={goBack}>Go back</button>
+	<button onclick={replaceRoute}>Replace current page</button>
 </p>
 
 <!-- Query string -->
@@ -119,11 +122,13 @@
 				Dynamic Link {dl.id}
 			</a>
 			-
-			<i
+			<button
+				type="button"
 				id="delete-link-{dl.id}"
-				on:click={() => (dynamicLinks = dynamicLinks.filter((e) => e.id != dl.id))}>
+				onclick={() => (dynamicLinks = dynamicLinks.filter((e) => e.id != dl.id))}
+				class="delete-link-button">
 				delete link
-			</i>
+			</button>
 		</li>
 	{/each}
 </ul>
@@ -140,5 +145,19 @@
 	}
 	.grayed {
 		opacity: 0.6;
+	}
+	.delete-link-button {
+		background: none;
+		border: none;
+		padding: 0;
+		margin: 0;
+		font: inherit;
+		cursor: pointer;
+		font-style: italic;
+		text-decoration: none;
+		color: inherit;
+	}
+	.delete-link-button:hover {
+		text-decoration: underline;
 	}
 </style>
