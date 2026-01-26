@@ -1,14 +1,10 @@
-FROM node:8-alpine
+FROM oven/bun:alpine
 LABEL author=pk13055 version=1.0
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-WORKDIR /home/node/app
-COPY package*.json ./
-
-USER node
-RUN npm install
-
-COPY --chown=node:node . .
+WORKDIR /app
+COPY package*.json bun.lock* ./
+RUN bun install --verbose
+ADD . .
 
 EXPOSE 5000
 ENTRYPOINT ["./entrypoint.sh"]
